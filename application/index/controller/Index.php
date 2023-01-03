@@ -49,6 +49,8 @@ class Index extends Frontend
         $think_var = Cookie::get('think_var');
         foreach ($Categorys as $key => $v){
             $Categorys[$key]['articles'] = Article::where('type',$think_var)->where('category_id',$v['id'])->order('updatetime desc')->select();
+
+
         }
 
         $this->view->assign("Categorys", $Categorys);

@@ -26,7 +26,7 @@ class Index extends Api
 
 
     /**
-     * 获取分类文章
+     * 获取分类文章列表
      *
      */
     public function get_category_articles()
@@ -37,6 +37,18 @@ class Index extends Api
             $lang = 'zh-cn';
         }
         $data = Article::where('type',$lang)->where('category_id',$id)->order('updatetime desc')->field('id,category_id,title,updatetime')->select();
+        $this->success('请求成功',$data);
+    }
+
+
+    /**
+     * 获取分类文章
+     *
+     */
+    public function get_articles()
+    {
+        $id = $this->request->get("id/d", 0);
+        $data = Article::where('id',$id)->find();
         $this->success('请求成功',$data);
     }
 
